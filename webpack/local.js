@@ -17,7 +17,14 @@ const localConfig = {
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, '..', './public/index.html')
     })
-  ]
+  ],
+  resolve: {
+    alias: {
+      // This is required when we use local component.
+      // when using library-ui-components, the application fails because two copies of react are found
+      react: path.resolve('./node_modules/react')
+    }
+  }
 };
 
 module.exports = merge(commonConfig, localConfig);

@@ -1,3 +1,5 @@
-const App = (): JSX.Element => <h1>React Skeleton App - {process.env.APP_ENV}</h1>;
+import { Login } from './views/Login';
+
+const App = (): JSX.Element => <Login />;
 
 export { App };
