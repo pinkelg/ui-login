@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "NODE_ENV=DEVELOPMENT webpack serve --config webpack/local.js",
+    "dev": "NODE_ENV=DEVELOPMENT webpack serve --config webpack/local.js",
     "lint:fix": "npm run lint -- --fix",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "package": "NODE_ENV=PRODUCTION webpack --config webpack/production.js",
@@ -22,6 +22,11 @@
   },
   "homepage": "https://github.com/pinkelg/ui-login#readme",
   "dependencies": {
+    "@emotion/react": "^11.9.3",
+    "@emotion/styled": "^11.9.3",
+    "@mui/icons-material": "^5.8.4",
+    "@mui/material": "^5.9.1",
+    "date-fns": "^2.29.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
