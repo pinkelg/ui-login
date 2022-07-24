@@ -15,7 +15,14 @@ const theme = createTheme({
   typography: {
     body1: {
       fontSize: '16px'
+    },
+    button: {
+      textTransform: 'none'
     }
+  },
+  transitions: {
+    // So we have `transition: none;` everywhere
+    create: () => 'none'
   }
 });
 
