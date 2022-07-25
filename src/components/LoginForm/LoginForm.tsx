@@ -18,7 +18,7 @@ export interface credentialProps {
 
 export interface LoginFormProps {
   onSubmit: (data: credentialProps) => void;
-  errorMessage?: String;
+  errorMessage?: null | String;
 }
 
 export const LoginForm = (props: LoginFormProps) => {
