@@ -10,7 +10,6 @@ const localConfig = {
     port: 3000,
     liveReload: true,
     hot: true,
-    http2: true,
     historyApiFallback: true
   },
   plugins: [

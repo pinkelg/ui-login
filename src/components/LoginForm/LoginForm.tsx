@@ -11,23 +11,34 @@ import { Logger } from '../utils';
 
 import styles from './LoginForm.module.scss';
 
-export const LoginForm = () => {
+export interface credentialProps {
+  username: string;
+  password: string;
+}
+
+export interface LoginFormProps {
+  onSubmit: (data: credentialProps) => void;
+  errorMessage?: String;
+}
+
+export const LoginForm = (props: LoginFormProps) => {
+  const { onSubmit, errorMessage } = props;
   const formik = useFormik({
     initialValues: {
-      email: '',
+      username: '',
       password: ''
     },
     onSubmit(values) {
-      Logger.info('LoginForm - OnSubmit', { ...values });
+      onSubmit(values);
     },
     validationSchema: Yup.object({
-      email: Yup.string().label('Email').required().email('Invalid email address'),
+      username: Yup.string().label('Email').required().email('Invalid email address'),
       password: Yup.string().label('Password').min(8, 'Password must be atleast 8 characters').required()
     })
   });
 
   useEffect(() => {
-    Logger.info('Component - LoginForm UseEffect');
+    Logger.info('Component - LoginForm Rendered');
   }, []);
 
   return (
@@ -38,16 +49,18 @@ export const LoginForm = () => {
         </div>
         <div className={styles.formControlsContainer}>
           <TextField
-            error={!!(formik.touched.email && formik.errors && formik.errors.email)}
-            data-testid="email"
-            name="email"
+            error={!!(formik.touched.username && formik.errors && formik.errors.username)}
+            data-testid="username"
+            name="username"
             variant="outlined"
             className={styles.textField}
             placeholder="Email"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            value={formik.values.email}
-            helperText={formik.touched.email && formik.errors && formik.errors.email ? formik.errors.email : null}
+            value={formik.values.username}
+            helperText={
+              formik.touched.username && formik.errors && formik.errors.username ? formik.errors.username : null
+            }
             type="text"
           />
 
@@ -66,11 +79,14 @@ export const LoginForm = () => {
               formik.touched.password && formik.errors && formik.errors.password ? formik.errors.password : null
             }
           />
-
           <Button variant="contained" type="submit" className={`${styles.button} ${styles.submitButton}`}>
             Login
           </Button>
-
+          {errorMessage && (
+            <Typography align="center" color="red">
+              {errorMessage}
+            </Typography>
+          )}
           <div className={styles.resetRegisterControls}>
             <Link href="/reset" underline="hover">
               Forgot Password?

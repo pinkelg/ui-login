@@ -3,7 +3,7 @@ import { Logger } from '../utils';
 
 export const Header = () => {
   useEffect(() => {
-    Logger.info('Component - Header UseEffect');
+    Logger.info('Component - Header Rendered');
   }, []);
 
   return <div>HEADER</div>;
